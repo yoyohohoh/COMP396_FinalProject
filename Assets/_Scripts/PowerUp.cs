@@ -6,10 +6,10 @@ public class PowerUp : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             int randomProbability = Random.Range(0, 100);
-            if(randomProbability < 30)
+            if (randomProbability < 30)
             {
                 Debug.Log("PowerUp: Protect");
                 other.gameObject.GetComponent<PlayerController>().powerUpItemTxt.text = "Protect";
@@ -21,7 +21,13 @@ public class PowerUp : MonoBehaviour
             }
 
             Destroy(gameObject);
-            
+
+        }
+
+        if (other.CompareTag("Obstacle"))
+        {
+            Debug.Log("PowerUp is generated on Obstacle.");
+            Destroy(gameObject);
         }
     }
 }
