@@ -49,7 +49,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Attack"",
                     ""type"": ""Button"",
                     ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -94,7 +94,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""name"": ""Next"",
                     ""type"": ""Button"",
                     ""id"": ""b7230bb6-fc9b-4f52-8b25-f5e19cb2c2ba"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -116,6 +116,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Player1PowerUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ebfccb7-1d9c-4a03-aab6-59a37e307212"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Player2PowerUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""cb3bd11a-b767-4b91-9e6b-ee8697f12f0a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -514,6 +532,28 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""Player2Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3fa4f943-d6aa-4557-baf1-c96001b17ff8"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1PowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2828468-f3e7-4d7b-a710-76538031cede"",
+                    ""path"": ""<Keyboard>/rightCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player2PowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1109,6 +1149,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Player2Move = m_Player.FindAction("Player2Move", throwIfNotFound: true);
+        m_Player_Player1PowerUp = m_Player.FindAction("Player1PowerUp", throwIfNotFound: true);
+        m_Player_Player2PowerUp = m_Player.FindAction("Player2PowerUp", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1198,6 +1240,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Player2Move;
+    private readonly InputAction m_Player_Player1PowerUp;
+    private readonly InputAction m_Player_Player2PowerUp;
     public struct PlayerActions
     {
         private @InputSystem_Actions m_Wrapper;
@@ -1212,6 +1256,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         public InputAction @Next => m_Wrapper.m_Player_Next;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Player2Move => m_Wrapper.m_Player_Player2Move;
+        public InputAction @Player1PowerUp => m_Wrapper.m_Player_Player1PowerUp;
+        public InputAction @Player2PowerUp => m_Wrapper.m_Player_Player2PowerUp;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1251,6 +1297,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Player2Move.started += instance.OnPlayer2Move;
             @Player2Move.performed += instance.OnPlayer2Move;
             @Player2Move.canceled += instance.OnPlayer2Move;
+            @Player1PowerUp.started += instance.OnPlayer1PowerUp;
+            @Player1PowerUp.performed += instance.OnPlayer1PowerUp;
+            @Player1PowerUp.canceled += instance.OnPlayer1PowerUp;
+            @Player2PowerUp.started += instance.OnPlayer2PowerUp;
+            @Player2PowerUp.performed += instance.OnPlayer2PowerUp;
+            @Player2PowerUp.canceled += instance.OnPlayer2PowerUp;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1285,6 +1337,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Player2Move.started -= instance.OnPlayer2Move;
             @Player2Move.performed -= instance.OnPlayer2Move;
             @Player2Move.canceled -= instance.OnPlayer2Move;
+            @Player1PowerUp.started -= instance.OnPlayer1PowerUp;
+            @Player1PowerUp.performed -= instance.OnPlayer1PowerUp;
+            @Player1PowerUp.canceled -= instance.OnPlayer1PowerUp;
+            @Player2PowerUp.started -= instance.OnPlayer2PowerUp;
+            @Player2PowerUp.performed -= instance.OnPlayer2PowerUp;
+            @Player2PowerUp.canceled -= instance.OnPlayer2PowerUp;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1477,6 +1535,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         void OnNext(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnPlayer2Move(InputAction.CallbackContext context);
+        void OnPlayer1PowerUp(InputAction.CallbackContext context);
+        void OnPlayer2PowerUp(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

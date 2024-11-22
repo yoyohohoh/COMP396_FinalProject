@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Windows;
 
 public class DataKeeper : MonoBehaviour
 {
@@ -25,17 +26,9 @@ public class DataKeeper : MonoBehaviour
     [SerializeField] string selectedLevel = "Easy";
     [SerializeField] public List<bool> levelAvailability = new List<bool> { true, false, false};
 
+    void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
 
-// Start is called before the first frame update
-private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+    void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.Windows;
 
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     CharacterController _controller;
     InputSystem_Actions _inputs;
     Vector2 _move;
+    [SerializeField] public Text powerUpItemTxt;
 
     // Start is called before the first frame update
     void Awake()
@@ -23,12 +25,17 @@ public class PlayerController : MonoBehaviour
         {
             _inputs.Player.Player1Move.performed += context => _move = context.ReadValue<Vector2>();
             _inputs.Player.Player1Move.canceled += context => _move = Vector2.zero;
+
+            _inputs.Player.Player1PowerUp.performed += context => UsePowerUp();
         }
         else
         {
             _inputs.Player.Player2Move.performed += context => _move = context.ReadValue<Vector2>();
             _inputs.Player.Player2Move.canceled += context => _move = Vector2.zero;
+
+            _inputs.Player.Player2PowerUp.performed += context => UsePowerUp();
         }
+
 
 
     }
@@ -49,13 +56,29 @@ public class PlayerController : MonoBehaviour
         _controller.Move(moveDirection * moveSpeed * Time.deltaTime);
     }
 
-    private void OnEnable()
-    {
-        _inputs.Enable();
-    }
+    void OnEnable() => _inputs.Enable();
 
-    private void OnDisable()
+    void OnDisable() => _inputs.Disable();
+
+    private void UsePowerUp()
     {
-        _inputs.Disable();
+        switch (powerUpItemTxt.text)
+        {
+            case "Protect":
+                Debug.Log("Used Protect");
+                powerUpItemTxt.text = "Null";
+                break;
+
+            case "Speed":
+                Debug.Log("Used Speed");
+                powerUpItemTxt.text = "Null";
+                break;
+
+            default:
+                Debug.Log("No Power-Up");
+                break;
+        }
+
+
     }
 }
