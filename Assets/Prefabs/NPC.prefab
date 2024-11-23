@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2929005818757136811}
   - component: {fileID: 4442677078568458417}
   - component: {fileID: 4084742694191950449}
+  - component: {fileID: 6226748461037758776}
   - component: {fileID: 2878561439052849791}
   m_Layer: 0
   m_Name: NPC
@@ -108,6 +109,38 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6226748461037758776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779875750095946837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3eb972bb7032c48abb79380595efa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  idleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  patrolCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  attackCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  energyLevel: 0
+  NPCMode: 
 --- !u!114 &2878561439052849791
 MonoBehaviour:
   m_ObjectHideFlags: 0
