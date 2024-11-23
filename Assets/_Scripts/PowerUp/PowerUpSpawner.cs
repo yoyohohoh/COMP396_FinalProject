@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 
-public class PowerUpController : MonoBehaviour
+public class PowerUpSpawner : MonoBehaviour
 {
     [SerializeField] int totalPowerUp = 10;
     [SerializeField] GameObject powerUpPrefab;
@@ -22,9 +22,4 @@ public class PowerUpController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

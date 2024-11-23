@@ -24,9 +24,9 @@ public class PowerUp : MonoBehaviour
 
         }
 
-        if (other.CompareTag("Obstacle"))
+        if (other.CompareTag("Obstacle") || other.CompareTag("NPC"))
         {
-            Debug.Log("PowerUp is generated on Obstacle.");
+            Debug.Log($"PowerUp is generated on {other.tag} at {this.transform.position}");
             Destroy(gameObject);
         }
     }
