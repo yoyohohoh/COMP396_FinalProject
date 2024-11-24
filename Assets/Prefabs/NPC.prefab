@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4084742694191950449}
   - component: {fileID: 6226748461037758776}
   - component: {fileID: 2878561439052849791}
+  - component: {fileID: 5759270235981966351}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -140,7 +141,9 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   energyLevel: 0
-  NPCMode: 
+  idleStrength: 0
+  patrolStrength: 0
+  attackStrength: 0
 --- !u!114 &2878561439052849791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,5 +154,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9adb2a152acaf774fa8e837123b4b46c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5759270235981966351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779875750095946837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a14c0673accc23f498be635ca47cff62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

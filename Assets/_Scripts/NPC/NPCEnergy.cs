@@ -9,17 +9,13 @@ public class NPCEnergy : MonoBehaviour
     [SerializeField] AnimationCurve patrolCurve;
     [SerializeField] AnimationCurve attackCurve;
     [SerializeField] public float energyLevel;
+    [SerializeField] float idleStrength;
+    [SerializeField] float patrolStrength;
+    [SerializeField] float attackStrength;
 
-    float patrolStrength;
-    float attackStrength;
-    float idleStrength;
 
     float lowThreshold = 0.3f;
     float highThreshold = 0.7f;
-
-    [Header("Mode")]
-    List<NPCStatus> NPCStatusList = new List<NPCStatus>();
-    [SerializeField] string NPCMode;
 
     // Start is called before the first frame update
     void Start()
@@ -28,11 +24,6 @@ public class NPCEnergy : MonoBehaviour
         RandomizeCurve(patrolCurve);
         RandomizeCurve(attackCurve);
 
-        NPCStatusList = new List<NPCStatus>();
-
-        NPCStatusList.Add(new NPCStatus("Low", false, false, true));
-        NPCStatusList.Add(new NPCStatus("Medium", false, true, false));
-        NPCStatusList.Add(new NPCStatus("High", true, true, false));
     }
 
     void RandomizeCurve(AnimationCurve curve)
@@ -62,9 +53,6 @@ public class NPCEnergy : MonoBehaviour
         idleStrength = idleCurve.Evaluate(1);
         energyLevel = FuzzyLogic(patrolStrength, attackStrength, idleStrength);
 
-        //NPC Mode Decision
-        NPCMode = NPCModeDecision(energyLevel).mode;
-
     }
     float FuzzyLogic(float patrolStrength, float attackStrength, float idleStrength)
     {
@@ -80,26 +68,6 @@ public class NPCEnergy : MonoBehaviour
         float finalEnergy = ruleHigh + ruleMedium + ruleLow;
 
         return Mathf.Clamp(finalEnergy, 0f, 1f);
-    }
-
-    public NPCStatus NPCModeDecision(float energyLevel)
-    {
-        NPCStatus decision = null;
-        if (energyLevel >= 0.70f)
-        {
-            decision = NPCStatusList[2];
-        }
-        else if (energyLevel < 0.70f && energyLevel > 0.30f)
-        {
-            decision = NPCStatusList[1];
-        }
-        else
-        if (energyLevel <= 0.30f)
-        {
-            decision = NPCStatusList[0];
-        }
-
-        return decision;
     }
 
 }

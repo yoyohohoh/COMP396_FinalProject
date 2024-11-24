@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.NetworkInformation;
 using UnityEngine;
 
-public class NPCStateFactory : MonoBehaviour
+public class NPCStateFactory
 {
     public NPCStateBase CreateState(NPCStateMachine fsm, string stateType)
     {
