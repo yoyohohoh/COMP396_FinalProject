@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.InputSystem.XR.Haptics;
 
 public class NPCStateMachine : MonoBehaviour
 {
+    public NPCController _controller;
     NPCStateBase _currentState;
     NPCStateFactory _stateFactory;
 
     [SerializeField] string currentState;
     void Start()
     {
+        _controller = this.gameObject.GetComponent<NPCController>();    
         _stateFactory = new NPCStateFactory();
-        ChangeState("Idle");
     }
     public NPCStateMachine(NPCStateFactory factory)
     {
@@ -29,6 +31,7 @@ public class NPCStateMachine : MonoBehaviour
     void Update()
     {
         _currentState?.Execute();
-        currentState = _currentState.ToString();
+        if(_currentState != null)
+        { currentState = _currentState.ToString(); }
     }
 }

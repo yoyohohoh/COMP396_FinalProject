@@ -9,20 +9,20 @@ public class NPCEnergy : MonoBehaviour
     [SerializeField] AnimationCurve patrolCurve;
     [SerializeField] AnimationCurve attackCurve;
     [SerializeField] public float energyLevel;
-    [SerializeField] float idleStrength;
-    [SerializeField] float patrolStrength;
-    [SerializeField] float attackStrength;
-
+    [HideInInspector] public float idleStrength;
+    [HideInInspector] public float patrolStrength;
+    [HideInInspector] public float attackStrength;
 
     float lowThreshold = 0.3f;
     float highThreshold = 0.7f;
-
+    NPCStateMachine fsm;
     // Start is called before the first frame update
     void Start()
     {
         RandomizeCurve(idleCurve);
         RandomizeCurve(patrolCurve);
         RandomizeCurve(attackCurve);
+
 
     }
 
