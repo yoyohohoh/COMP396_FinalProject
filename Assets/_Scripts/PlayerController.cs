@@ -6,8 +6,8 @@ using UnityEngine.Windows;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] bool isPlayer1;
-    [SerializeField] bool isSpeedUp;
-    [SerializeField] public bool isProtected;
+    [SerializeField] bool isSpeedUp = false;
+    [SerializeField] public bool isProtected = false;
     [SerializeField] public float health = 100f;
     [SerializeField] float moveSpeed = 15.0f;
     float originalSpeed;
@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     InputSystem_Actions _inputs;
     Vector2 _move;
     [SerializeField] public Text powerUpItemTxt;
+    [SerializeField] public Text timerTxt;
     [SerializeField] public GameObject endPoint;
     // Start is called before the first frame update
     void Awake()

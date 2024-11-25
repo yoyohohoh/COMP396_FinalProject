@@ -25,7 +25,9 @@ public class DataKeeper : MonoBehaviour
     Dropdown dropdownLevelList;
     [SerializeField] string selectedLevel = "Easy";
     [SerializeField] public List<bool> levelAvailability = new List<bool> { true, false, false};
-
+    [SerializeField] public List<string> easyLevelRecord;
+    [SerializeField] public List<string> mediumLevelRecord;
+    [SerializeField] public List<string> hardLevelRecord;
     void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
 
     void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;

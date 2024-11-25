@@ -8,12 +8,13 @@ public class LevelUpController : MonoBehaviour
 {
     [SerializeField] GameObject[] players;
     int countPlayer;
-
+    DataKeeper dataKeeper;
 
     void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
         countPlayer = players.Length;
+        dataKeeper = GameObject.Find("DataKeeper").GetComponent<DataKeeper>();
     }
 
     void FixedUpdate()
@@ -35,6 +36,10 @@ public class LevelUpController : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             countPlayer--;
+            PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
+            dataKeeper.easyLevelRecord.Add(other.gameObject.name);
+            dataKeeper.easyLevelRecord.Add(playerController.timerTxt.text);
+            playerController.timerTxt.GetComponent<TimeDisplay>().enabled = false;
         }
     }
 
