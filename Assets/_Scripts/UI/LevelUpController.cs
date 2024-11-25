@@ -37,8 +37,22 @@ public class LevelUpController : MonoBehaviour
         {
             countPlayer--;
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            dataKeeper.easyLevelRecord.Add(other.gameObject.name);
-            dataKeeper.easyLevelRecord.Add(playerController.timerTxt.text);
+            Scene currentScene = SceneManager.GetActiveScene();
+            if (currentScene.name == "EasyLevel")
+            {
+                dataKeeper.easyLevelRecord.Add(other.gameObject.name);
+                dataKeeper.easyLevelRecord.Add(playerController.timerTxt.text);
+            }
+            if (currentScene.name == "MediumLevel")
+            {
+                dataKeeper.mediumLevelRecord.Add(other.gameObject.name);
+                dataKeeper.mediumLevelRecord.Add(playerController.timerTxt.text);
+            }
+            if (currentScene.name == "HardLevel")
+            {
+                dataKeeper.hardLevelRecord.Add(other.gameObject.name);
+                dataKeeper.hardLevelRecord.Add(playerController.timerTxt.text);
+            }
             playerController.timerTxt.GetComponent<TimeDisplay>().enabled = false;
         }
     }
