@@ -24,22 +24,22 @@ public class ResultDisplay : MonoBehaviour
         easyLevelRecord = dataKeeper.easyLevelRecord;
         mediumLevelRecord = dataKeeper.mediumLevelRecord;
         hardLevelRecord = dataKeeper.hardLevelRecord;
+        UpdateTimerTexts(dataKeeper.easyLevelRecord, p1EasyTimer, p2EasyTimer);
+        UpdateTimerTexts(dataKeeper.mediumLevelRecord, p1MediumTimer, p2MediumTimer);
+        UpdateTimerTexts(dataKeeper.hardLevelRecord, p1HardTimer, p2HardTimer);
+    }
 
-        if (easyLevelRecord[0] == "Player1")
+    void UpdateTimerTexts(List<string> levelRecord, Text p1Timer, Text p2Timer)
+    {
+        if (levelRecord[0] == "Player1")
         {
-            p1EasyTimer.text = easyLevelRecord[1];
-            p2EasyTimer.text = easyLevelRecord[3];
+            p1Timer.text = levelRecord[1];
+            p2Timer.text = levelRecord[3];
         }
         else
         {
-            p2EasyTimer.text = easyLevelRecord[1];
-            p1EasyTimer.text = easyLevelRecord[3];
+            p2Timer.text = levelRecord[1];
+            p1Timer.text = levelRecord[3];
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
