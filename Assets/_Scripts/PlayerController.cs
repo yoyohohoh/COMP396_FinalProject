@@ -6,6 +6,8 @@ using UnityEngine.Windows;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] bool isPlayer1;
+    [SerializeField] bool isSpeedUp;
+    [SerializeField] public bool isProtected;
     [SerializeField] public float health = 100f;
     [SerializeField] float moveSpeed = 15.0f;
     float originalSpeed;
@@ -74,11 +76,14 @@ public class PlayerController : MonoBehaviour
             case "Protect":
                 Debug.Log("Used Protect");
                 powerUpItemTxt.text = "Null";
+                isProtected = true;
+                Invoke("ResetProtect", 5f);
                 break;
 
             case "Speed":
                 Debug.Log("Used Speed");
                 powerUpItemTxt.text = "Null";
+                isSpeedUp = true;
                 moveSpeed *= 3f;
                 Invoke("NormalSpeed", 3f);
                 break;
@@ -92,5 +97,11 @@ public class PlayerController : MonoBehaviour
     void NormalSpeed()
     {
         moveSpeed = originalSpeed;
+        isSpeedUp = false;
+    }
+
+    void ResetProtect()
+    {
+        isProtected = false;
     }
 }

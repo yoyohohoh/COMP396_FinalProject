@@ -122,7 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 722baa8f6dbf11146bade0abc3b6a50c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPlayer1: 0
+  isPlayer1: 1
+  isSpeedUp: 0
+  isProtected: 0
+  health: 100
   moveSpeed: 15
   powerUpItemTxt: {fileID: 0}
 --- !u!114 &8872795216418031082

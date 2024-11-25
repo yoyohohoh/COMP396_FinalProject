@@ -136,7 +136,16 @@ public class NPCController : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Caught Player");
-            other.gameObject.GetComponent<PlayerController>().health -= 100 * attackStrength;
+            PlayerController player = other.gameObject.GetComponent<PlayerController>();
+            if (player.isProtected)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                player.health -= 100 * attackStrength;
+            }
+            
         }
     }
 
