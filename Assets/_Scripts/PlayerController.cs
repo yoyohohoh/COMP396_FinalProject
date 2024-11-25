@@ -6,7 +6,9 @@ using UnityEngine.Windows;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] bool isPlayer1;
+    [SerializeField] public float health = 100f;
     [SerializeField] float moveSpeed = 15.0f;
+    float originalSpeed;
     CharacterController _controller;
     InputSystem_Actions _inputs;
     Vector2 _move;
@@ -40,6 +42,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        originalSpeed = moveSpeed;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -60,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     void OnDisable() => _inputs.Disable();
 
-    private void UsePowerUp()
+    public void UsePowerUp()
     {
         switch (powerUpItemTxt.text)
         {
@@ -72,13 +79,18 @@ public class PlayerController : MonoBehaviour
             case "Speed":
                 Debug.Log("Used Speed");
                 powerUpItemTxt.text = "Null";
+                moveSpeed *= 3f;
+                Invoke("NormalSpeed", 3f);
                 break;
 
             default:
                 Debug.Log("No Power-Up");
                 break;
         }
+    }
 
-
+    void NormalSpeed()
+    {
+        moveSpeed = originalSpeed;
     }
 }

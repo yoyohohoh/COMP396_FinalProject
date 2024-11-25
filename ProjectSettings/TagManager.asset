@@ -6,6 +6,7 @@ TagManager:
   tags:
   - NPC
   - Waypoint
+  - Obstacle
   layers:
   - Default
   - TransparentFX

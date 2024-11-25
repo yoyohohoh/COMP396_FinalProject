@@ -625,7 +625,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 341694368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1956944082}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UsePowerUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &341694368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,6 +676,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 341694365}
   m_CullTransparentMesh: 1
+--- !u!114 &386385683 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
+  m_PrefabInstance: {fileID: 5475525391270430566}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722baa8f6dbf11146bade0abc3b6a50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &460337312
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,7 +999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &942079436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1261,7 +1284,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1318023157}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 386385683}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: UsePowerUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1318023157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,14 +1572,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
-    - target: {fileID: 5227286797367635808, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: f0e8fb7c7ef970846bee23809a54fd3f, type: 2}
-    - target: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
-      propertyPath: moveSpeed
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: powerUpItemTxt
       value: 
@@ -1817,6 +1844,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2146548933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1956944082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
+  m_PrefabInstance: {fileID: 1685898118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 722baa8f6dbf11146bade0abc3b6a50c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1982819252
 GameObject:
   m_ObjectHideFlags: 0
