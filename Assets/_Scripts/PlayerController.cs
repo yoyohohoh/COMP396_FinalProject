@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isSpeedUp = false;
     [SerializeField] public bool isProtected = false;
     [SerializeField] public float health = 100f;
-    [SerializeField] float moveSpeed = 15.0f;
+    [SerializeField] public float moveSpeed = 15.0f;
     float originalSpeed;
     CharacterController _controller;
     InputSystem_Actions _inputs;
