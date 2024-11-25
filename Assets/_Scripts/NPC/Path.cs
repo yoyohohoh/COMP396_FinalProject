@@ -13,6 +13,7 @@ public class Path : MonoBehaviour
         allWaypoints = GameObject.FindGameObjectsWithTag("Waypoint");
         allWaypoints = allWaypoints.OrderBy(x => Random.Range(0, int.MaxValue)).ToArray();
         selectedWaypoints = new Transform[randomPointAmount];
+
         for (int i = 0; i < randomPointAmount; i++)
         {
             selectedWaypoints[i] = allWaypoints[i].transform;

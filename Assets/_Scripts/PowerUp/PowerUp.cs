@@ -6,6 +6,11 @@ public class PowerUp : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Obstacle") || other.CompareTag("NPC"))
+        {
+            Debug.Log($"PowerUp is generated on {other.tag} at {this.transform.position}");
+            Destroy(gameObject);
+        }
         if (other.CompareTag("Player"))
         {
             int randomProbability = Random.Range(0, 100);
@@ -24,10 +29,6 @@ public class PowerUp : MonoBehaviour
 
         }
 
-        if (other.CompareTag("Obstacle") || other.CompareTag("NPC"))
-        {
-            Debug.Log($"PowerUp is generated on {other.tag} at {this.transform.position}");
-            Destroy(gameObject);
-        }
+        
     }
 }
