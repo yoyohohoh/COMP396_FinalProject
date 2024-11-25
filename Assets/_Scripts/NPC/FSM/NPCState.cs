@@ -32,7 +32,7 @@ public class IdleState : NPCStateBase
     public override void Exit()
     {
         Debug.Log("Exiting Idle State");
-        fsm._controller.isAlert = false;
+        //fsm._controller.isAlert = false;
     }
 }
 public class PatrolState : NPCStateBase
@@ -49,7 +49,7 @@ public class PatrolState : NPCStateBase
             {
                 new stayAlertNode(fsm._controller),
                 new CheckStrengthNode("Patrol", fsm._controller.patrolStrength, 0.5f),
-                new FollowWaypointsNode()
+                new FollowWaypointsNode(fsm._controller)
             }),
 
         }
@@ -65,7 +65,7 @@ public class PatrolState : NPCStateBase
     public override void Exit()
     {
         Debug.Log("Exiting Patrol State");
-
+        //fsm._controller.isPatrol = false;
     }
 }
 

@@ -1,6 +1,8 @@
+using System.Net;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public abstract class Node
 {
@@ -72,15 +74,16 @@ public class CheckStrengthNode : Node
 
 public class FollowWaypointsNode : Node
 {
-
-    public FollowWaypointsNode()
+    NPCController _controller;
+    public FollowWaypointsNode(NPCController controller)
     {
-
+        this._controller = controller;
     }
-
+    
     public override bool Execute()
     {
         Debug.Log("Path Following");
+        _controller.isPatrol = true;
         return true;
     }
 }

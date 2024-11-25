@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6226748461037758776}
   - component: {fileID: 2878561439052849791}
   - component: {fileID: 5759270235981966351}
+  - component: {fileID: 5244401541084624171}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -167,6 +168,7 @@ MonoBehaviour:
   detectionRate: 1
   FieldOfView: 45
   ViewDistance: 5
+  isPatrol: 0
 --- !u!114 &5759270235981966351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,3 +183,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controller: {fileID: 0}
   currentState: 
+--- !u!114 &5244401541084624171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779875750095946837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23985273acf438c458d1f218691cc5bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: {fileID: 0}
+  speed: 10
+  steeringInertia: 100
+  isLooping: 1
+  waypointRadius: 1

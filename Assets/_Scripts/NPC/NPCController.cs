@@ -31,6 +31,10 @@ public class NPCController : MonoBehaviour
     private Vector3 rayDirection;
     #endregion
 
+    [Header("Patrol Waypoints")]
+    public bool isPatrol = false;
+    PathFollowing pathFollowing;
+
     void Start()
     {
         if (goPlayer == null)
@@ -38,7 +42,8 @@ public class NPCController : MonoBehaviour
             goPlayer = GameObject.FindGameObjectWithTag("Player");
         }
         playerTrans = goPlayer.transform;
-
+        
+        
     }
 
     void Update()
@@ -69,7 +74,12 @@ public class NPCController : MonoBehaviour
         {
             UpdateSense();
         }
+
+        pathFollowing = this.gameObject.GetComponent<PathFollowing>();
+        pathFollowing.enabled = isPatrol;
+
     }
+
     public void UpdateSense()
     {
         elapsedTime += Time.deltaTime;
