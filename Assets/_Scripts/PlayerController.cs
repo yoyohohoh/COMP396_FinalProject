@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     InputSystem_Actions _inputs;
     Vector2 _move;
     [SerializeField] public Text powerUpItemTxt;
+    [SerializeField] public Text lifeTxt;
     [SerializeField] public Text timerTxt;
     [SerializeField] public GameObject endPoint;
     // Start is called before the first frame update
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        lifeTxt.text = $"Life: {health}";
         MovePlayer();
 
         if(health <= 0)

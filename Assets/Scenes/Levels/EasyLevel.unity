@@ -872,7 +872,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &325706323
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1497,7 +1497,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Life: 3'
+  m_Text: 'Life: 100'
 --- !u!222 &1091000410
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2235,6 +2235,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
+      propertyPath: lifeTxt
+      value: 
+      objectReference: {fileID: 2092379999}
     - target: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: endPoint
       value: 
@@ -3043,7 +3047,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Life: 3'
+  m_Text: 'Life: 100'
 --- !u!222 &2092380000
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3069,7 +3073,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2107804208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3293,6 +3297,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 240356192bcc68f46a08871f77d7b28b, type: 2}
+    - target: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
+      propertyPath: lifeTxt
+      value: 
+      objectReference: {fileID: 1091000409}
     - target: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: endPoint
       value: 
