@@ -18,6 +18,7 @@ public class PathFollowing : MonoBehaviour
     bool isEven = false;
     void Start()
     {
+        path = GameObject.Find("Waypoints").GetComponent<Path>();
         pathLength = path.Length;
         velocity = transform.forward;
     }

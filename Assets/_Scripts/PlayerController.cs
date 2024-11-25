@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     InputSystem_Actions _inputs;
     Vector2 _move;
     [SerializeField] public Text powerUpItemTxt;
-
+    [SerializeField] public GameObject endPoint;
     // Start is called before the first frame update
     void Awake()
     {
@@ -53,6 +53,20 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         MovePlayer();
+
+        if(health <= 0)
+        {
+            _inputs.Disable();
+            if(isPlayer1)
+            {
+                this.transform.position = new Vector3(-2f, 0, endPoint.transform.position.z);
+            }
+            else
+            {
+                this.transform.position = new Vector3(2f, 0, endPoint.transform.position.z);
+            }
+
+        }
     }
 
     void MovePlayer()
