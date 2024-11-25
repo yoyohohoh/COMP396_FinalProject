@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public abstract class Node
+public abstract class BTNode
 {
     public abstract bool Execute();
 }
 
-public class Selector : Node
+public class Selector : BTNode
 {
-    private List<Node> _children = new List<Node>();
+    private List<BTNode> _children = new List<BTNode>();
 
-    public Selector(List<Node> children) => _children = children;
+    public Selector(List<BTNode> children) => _children = children;
 
     public override bool Execute()
     {
@@ -28,11 +28,11 @@ public class Selector : Node
     }
 }
 
-public class Sequence : Node
+public class Sequence : BTNode
 {
-    private List<Node> _children = new List<Node>();
+    private List<BTNode> _children = new List<BTNode>();
 
-    public Sequence(List<Node> children) => _children = children;
+    public Sequence(List<BTNode> children) => _children = children;
 
     public override bool Execute()
     {
@@ -47,7 +47,7 @@ public class Sequence : Node
     }
 }
 
-public class CheckStrengthNode : Node
+public class CheckStrengthNode : BTNode
 {
     string _type;
     float _threshold;
@@ -72,7 +72,7 @@ public class CheckStrengthNode : Node
     }
 }
 
-public class FollowWaypointsNode : Node
+public class FollowWaypointsNode : BTNode
 {
     NPCController _controller;
     public FollowWaypointsNode(NPCController controller)
@@ -87,10 +87,10 @@ public class FollowWaypointsNode : Node
     }
 }
 
-public class stayAlertNode : Node
+public class StayAlertNode : BTNode
 {
     NPCController _controller;
-    public stayAlertNode(NPCController controller)
+    public StayAlertNode(NPCController controller)
     {
         this._controller = controller;
     }
@@ -98,6 +98,21 @@ public class stayAlertNode : Node
     public override bool Execute()
     {
         _controller.isAlert = true;
+        return true;
+    }
+}
+
+public class GoPlayerNode : BTNode
+{
+    NPCController _controller;
+    public GoPlayerNode(NPCController controller)
+    {
+        this._controller = controller;
+    }
+
+    public override bool Execute()
+    {
+        _controller.isAttack = true;
         return true;
     }
 }

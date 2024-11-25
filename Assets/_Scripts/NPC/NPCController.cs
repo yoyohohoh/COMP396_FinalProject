@@ -17,6 +17,7 @@ public class NPCController : MonoBehaviour
     #endregion
 
     [Header("Sensor")]
+    public bool isAttack = false;
     #region Sense properties
     public GameObject goPlayer;
     public bool isVisible = false;
@@ -78,6 +79,15 @@ public class NPCController : MonoBehaviour
         pathFollowing = this.gameObject.GetComponent<PathFollowing>();
         pathFollowing.enabled = isPatrol;
 
+        if(isAttack)
+        {
+            MoveToPlayer();
+        }
+    }
+
+    public void MoveToPlayer()
+    {
+        //move to player
     }
 
     public void UpdateSense()

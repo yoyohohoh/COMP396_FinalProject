@@ -7,16 +7,16 @@ using UnityEngine.UIElements;
 public class IdleState : NPCStateBase
 {
     public IdleState(NPCStateMachine fsm) : base(fsm) { }
-    Node _behaviorTree;
+    BTNode _behaviorTree;
     public override void Enter()
     {
-        Node idleSelector = new Selector(
-        new List<Node>
+        BTNode idleSelector = new Selector(
+        new List<BTNode>
         {
-            new Sequence(new List<Node>
+            new Sequence(new List<BTNode>
             {
                 new CheckStrengthNode("Idle", -fsm._controller.idleStrength, -0.5f),
-                new stayAlertNode(fsm._controller)
+                new StayAlertNode(fsm._controller)
             }),
         }
         );
@@ -34,15 +34,15 @@ public class IdleState : NPCStateBase
 public class PatrolState : NPCStateBase
 {
     public PatrolState(NPCStateMachine fsm) : base(fsm) { }
-    Node _behaviorTree;
+    BTNode _behaviorTree;
     public override void Enter()
     {
-        Node patrolSelector = new Selector(
-        new List<Node>
+        BTNode patrolSelector = new Selector(
+        new List<BTNode>
         {
-            new Sequence(new List<Node>
+            new Sequence(new List<BTNode>
             {
-                new stayAlertNode(fsm._controller),
+                new StayAlertNode(fsm._controller),
                 new CheckStrengthNode("Patrol", fsm._controller.patrolStrength, 0.5f),
                 new FollowWaypointsNode(fsm._controller)
             }),
@@ -64,15 +64,16 @@ public class PatrolState : NPCStateBase
 public class AttackState : NPCStateBase
 {
     public AttackState(NPCStateMachine fsm) : base(fsm) { }
-    Node _behaviorTree;
+    BTNode _behaviorTree;
     public override void Enter()
     {
-        Node attackSelector = new Selector(
-        new List<Node>
+        BTNode attackSelector = new Selector(
+        new List<BTNode>
         {
-            new Sequence(new List<Node>
+            new Sequence(new List<BTNode>
             {
                 new CheckStrengthNode("Attack", fsm._controller.attackStrength, 0.5f),
+                new GoPlayerNode(fsm._controller)
             }),
         }
         );
