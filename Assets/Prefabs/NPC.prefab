@@ -19,7 +19,7 @@ GameObject:
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2779875750095946837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23985273acf438c458d1f218691cc5bf, type: 3}
   m_Name: 
@@ -200,3 +200,5 @@ MonoBehaviour:
   steeringInertia: 100
   isLooping: 1
   waypointRadius: 1
+  obstacleAvoidanceDistance: 5
+  obstacleAvoidanceStrength: 10

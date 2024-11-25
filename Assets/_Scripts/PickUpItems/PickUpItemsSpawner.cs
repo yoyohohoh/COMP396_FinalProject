@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
 
-public class PowerUpSpawner : MonoBehaviour
+public class PickUpItemsSpawner : MonoBehaviour
 {
-    [SerializeField] int totalPowerUp = 10;
+    [SerializeField] int totalPowerUp = 5;
+    [SerializeField] int totalReward = 5;
     [SerializeField] GameObject powerUpPrefab;
+    [SerializeField] GameObject rewardPrefab;
     [SerializeField] float startZPoint = 20.0f;
     [SerializeField] float endZPoint = 160.0f;
     float startXPoint = -5.0f;
@@ -19,6 +21,11 @@ public class PowerUpSpawner : MonoBehaviour
         {
             Vector3 randomPosition = new Vector3(Random.Range(startXPoint, endXPoint), 0f, Random.Range(startZPoint, endZPoint));
             Instantiate(powerUpPrefab, randomPosition, Quaternion.identity);
+        }
+        for (int i = 0; i < totalReward; i++)
+        {
+            Vector3 randomPosition = new Vector3(Random.Range(startXPoint, endXPoint), 0f, Random.Range(startZPoint, endZPoint));
+            Instantiate(rewardPrefab, randomPosition, Quaternion.identity);
         }
     }
 
