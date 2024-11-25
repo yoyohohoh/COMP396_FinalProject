@@ -10,7 +10,6 @@ public class IdleState : NPCStateBase
     Node _behaviorTree;
     public override void Enter()
     {
-        Debug.Log("Entering Idle State");
         Node idleSelector = new Selector(
         new List<Node>
         {
@@ -26,13 +25,10 @@ public class IdleState : NPCStateBase
     }
     public override void Execute()
     {
-        Debug.Log("Updating Idle State");
         _behaviorTree.Execute();
     }
     public override void Exit()
     {
-        Debug.Log("Exiting Idle State");
-        //fsm._controller.isAlert = false;
     }
 }
 public class PatrolState : NPCStateBase
@@ -41,7 +37,6 @@ public class PatrolState : NPCStateBase
     Node _behaviorTree;
     public override void Enter()
     {
-        Debug.Log("Entering Patrol State");
         Node patrolSelector = new Selector(
         new List<Node>
         {
@@ -59,13 +54,10 @@ public class PatrolState : NPCStateBase
     }
     public override void Execute()
     {
-        Debug.Log("Updating Patrol State");
         _behaviorTree.Execute();
     }
     public override void Exit()
     {
-        Debug.Log("Exiting Patrol State");
-        //fsm._controller.isPatrol = false;
     }
 }
 
@@ -89,12 +81,10 @@ public class AttackState : NPCStateBase
     }
     public override void Execute()
     {
-        Debug.Log("Updating Attack State");
         _behaviorTree.Execute();
     }
     public override void Exit()
     { 
-        Debug.Log("Exiting Attack State");
        
     }
 }

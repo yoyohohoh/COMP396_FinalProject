@@ -82,7 +82,6 @@ public class FollowWaypointsNode : Node
     
     public override bool Execute()
     {
-        Debug.Log("Path Following");
         _controller.isPatrol = true;
         return true;
     }
@@ -98,7 +97,6 @@ public class stayAlertNode : Node
 
     public override bool Execute()
     {
-        Debug.Log("Activating Sensor");
         _controller.isAlert = true;
         return true;
     }

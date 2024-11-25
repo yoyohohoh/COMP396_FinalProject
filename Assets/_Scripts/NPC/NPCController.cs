@@ -135,7 +135,6 @@ public class NPCController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Caught Player");
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
             if (player.isProtected)
             {
