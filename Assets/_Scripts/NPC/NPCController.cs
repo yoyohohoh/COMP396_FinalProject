@@ -56,20 +56,20 @@ public class NPCController : MonoBehaviour
         attackStrength = NPCEnergy.attackStrength;
 
         fsm = this.gameObject.GetComponent<NPCStateMachine>();
-        if (!isVisible)
-        {
-            if (energyLevel != 0)
-            {
-                if (energyLevel > 0.3f)
-                {
-                    fsm.ChangeState("Patrol");
-                }
-                else if (energyLevel <= 0.3f)
-                {
-                    fsm.ChangeState("Idle");
-                }
-            }
-        }
+        //if (!isVisible)
+        //{
+        //    if (energyLevel != 0)
+        //    {
+        //        if (energyLevel > 0.3f)
+        //        {
+        //            fsm.ChangeState("Patrol");
+        //        }
+        //        else if (energyLevel <= 0.3f)
+        //        {
+        //            fsm.ChangeState("Idle");
+        //        }
+        //    }
+        //}
 
         if (isAlert)
         {
@@ -126,7 +126,6 @@ public class NPCController : MonoBehaviour
             {
                 Debug.Log("Chasing Mode: OFF");
                 isVisible = false;
-                isAttack = false;
                 if (energyLevel != 0)
                 {
                     if (energyLevel > 0.3f)
