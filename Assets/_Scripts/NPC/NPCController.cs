@@ -27,7 +27,7 @@ public class NPCController : MonoBehaviour
 
     #region Sight properties
     public int FieldOfView = 45;
-    public int ViewDistance = 5;
+    public int ViewDistance = 10;
     private Transform playerTrans;
     private Vector3 rayDirection;
     #endregion
@@ -83,11 +83,15 @@ public class NPCController : MonoBehaviour
         {
             MoveToPlayer();
         }
+
     }
 
     public void MoveToPlayer()
     {
-        //move to player
+        Vector3 directionToPlayer = (playerTrans.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2f * Time.deltaTime);
+        transform.Translate(directionToPlayer * attackStrength * 10f * Time.deltaTime, Space.World);
     }
 
     public void UpdateSense()
@@ -113,15 +117,27 @@ public class NPCController : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    Debug.Log("Player Detected");
+                    Debug.Log("Chasing Mode: ON");
                     isVisible = true;
                     fsm.ChangeState("Attack");
                 }
             }
             else
             {
-                Debug.Log("Player Undetected");
+                Debug.Log("Chasing Mode: OFF");
                 isVisible = false;
+                isAttack = false;
+                if (energyLevel != 0)
+                {
+                    if (energyLevel > 0.3f)
+                    {
+                        fsm.ChangeState("Patrol");
+                    }
+                    else if (energyLevel <= 0.3f)
+                    {
+                        fsm.ChangeState("Idle");
+                    }
+                }
             }
         }
     }

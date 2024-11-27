@@ -67,12 +67,12 @@ public class AttackState : NPCStateBase
     BTNode _behaviorTree;
     public override void Enter()
     {
+        fsm._controller.isPatrol = false;   
         BTNode attackSelector = new Selector(
         new List<BTNode>
         {
             new Sequence(new List<BTNode>
             {
-                new CheckStrengthNode("Attack", fsm._controller.attackStrength, 0.5f),
                 new GoPlayerNode(fsm._controller)
             }),
         }
@@ -85,7 +85,7 @@ public class AttackState : NPCStateBase
         _behaviorTree.Execute();
     }
     public override void Exit()
-    { 
-       
+    {
+
     }
 }

@@ -83,6 +83,7 @@ public class FollowWaypointsNode : BTNode
     public override bool Execute()
     {
         _controller.isPatrol = true;
+        Debug.Log("Patrol Mode: ON");
         return true;
     }
 }
@@ -98,6 +99,7 @@ public class StayAlertNode : BTNode
     public override bool Execute()
     {
         _controller.isAlert = true;
+        Debug.Log("Dectection Mode: ON");
         return true;
     }
 }

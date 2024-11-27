@@ -408,7 +408,7 @@ Transform:
   m_GameObject: {fileID: 144541988}
   serializedVersion: 2
   m_LocalRotation: {x: 0.019488886, y: 0.000000020784926, z: 7.374747e-11, w: 0.9998101}
-  m_LocalPosition: {x: 2, y: 0.39, z: -10}
+  m_LocalPosition: {x: 2, y: 0.39, z: 79.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1427,7 +1427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &942079436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1661,7 +1661,7 @@ Transform:
   m_GameObject: {fileID: 1241222234}
   serializedVersion: 2
   m_LocalRotation: {x: 0.019488888, y: 0.000000020794266, z: -4.053341e-10, w: 0.9998101}
-  m_LocalPosition: {x: 2, y: 0.39, z: -10}
+  m_LocalPosition: {x: 2, y: 0.39, z: 79.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2303,7 +2303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7311833644116395851, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 89.9
       objectReference: {fileID: 0}
     - target: {fileID: 7311833644116395851, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3190,7 +3190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6645925607186638435, guid: 2fa02292ea448d04697706e22a999415, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.01
+      value: -5.7
       objectReference: {fileID: 0}
     - target: {fileID: 6645925607186638435, guid: 2fa02292ea448d04697706e22a999415, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3398,6 +3398,10 @@ PrefabInstance:
     - target: {fileID: 2779875750095946837, guid: 68f84be72624bbf43801aff1327b304b, type: 3}
       propertyPath: m_Name
       value: NPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878561439052849791, guid: 68f84be72624bbf43801aff1327b304b, type: 3}
+      propertyPath: ViewDistance
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5244401541084624171, guid: 68f84be72624bbf43801aff1327b304b, type: 3}
       propertyPath: path
