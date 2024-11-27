@@ -19,7 +19,10 @@ public class NPCController : MonoBehaviour
     [Header("Sensor")]
     public bool isAttack = false;
     #region Sense properties
-    public GameObject goPlayer;
+    //public GameObject goPlayer;
+    public GameObject[] goPlayers;  // Array to store multiple players
+    private Transform closestPlayerTrans; // Store the closest player's transform
+
     public bool isVisible = false;
     public float detectionRate = 1.0f;
     private float elapsedTime = 0.0f;
@@ -38,13 +41,13 @@ public class NPCController : MonoBehaviour
 
     void Start()
     {
-        if (goPlayer == null)
-        {
-            goPlayer = GameObject.FindGameObjectWithTag("Player");
-        }
-        playerTrans = goPlayer.transform;
-        
-        
+        //if (goPlayer == null)
+        //{
+        //    goPlayer = GameObject.FindGameObjectWithTag("Player");
+        //}
+        //playerTrans = goPlayer.transform;
+
+        goPlayers = GameObject.FindGameObjectsWithTag("Player");
     }
 
     void Update()
@@ -56,20 +59,6 @@ public class NPCController : MonoBehaviour
         attackStrength = NPCEnergy.attackStrength;
 
         fsm = this.gameObject.GetComponent<NPCStateMachine>();
-        //if (!isVisible)
-        //{
-        //    if (energyLevel != 0)
-        //    {
-        //        if (energyLevel > 0.3f)
-        //        {
-        //            fsm.ChangeState("Patrol");
-        //        }
-        //        else if (energyLevel <= 0.3f)
-        //        {
-        //            fsm.ChangeState("Idle");
-        //        }
-        //    }
-        //}
 
         if (isAlert)
         {
@@ -85,15 +74,6 @@ public class NPCController : MonoBehaviour
         }
 
     }
-
-    public void MoveToPlayer()
-    {
-        Vector3 directionToPlayer = (playerTrans.position - transform.position).normalized;
-        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2f * Time.deltaTime);
-        transform.Translate(directionToPlayer * attackStrength * 10f * Time.deltaTime, Space.World);
-    }
-
     public void UpdateSense()
     {
         elapsedTime += Time.deltaTime;
@@ -104,48 +84,130 @@ public class NPCController : MonoBehaviour
             elapsedTime = 0.0f;
         }
     }
+
+    //public void MoveToPlayer()
+    //{
+    //    Vector3 directionToPlayer = (playerTrans.position - transform.position).normalized;
+    //    Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2f * Time.deltaTime);
+    //    transform.Translate(directionToPlayer * attackStrength * 10f * Time.deltaTime, Space.World);
+    //}
+
+    //public void DetectAspect()
+    //{
+    //    if (playerTrans == null) return;
+
+    //    rayDirection = (playerTrans.position - transform.position).normalized;
+
+    //    if (Vector3.Angle(rayDirection, transform.forward) < FieldOfView)
+    //    {
+    //        RaycastHit hit;
+    //        if (Physics.Raycast(transform.position, rayDirection, out hit, ViewDistance))
+    //        {
+    //            if (hit.collider.gameObject.CompareTag("Player"))
+    //            {
+    //                Debug.Log("Chasing Mode: ON");
+    //                isVisible = true;
+    //                fsm.ChangeState("Attack");
+    //            }
+    //        }
+    //        else
+    //        {
+    //            Debug.Log("Chasing Mode: OFF");
+    //            isVisible = false;
+    //            if (energyLevel != 0)
+    //            {
+    //                if (energyLevel > 0.3f)
+    //                {
+    //                    fsm.ChangeState("Patrol");
+    //                }
+    //                else if (energyLevel <= 0.3f)
+    //                {
+    //                    fsm.ChangeState("Idle");
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+    public void MoveToPlayer()
+    {
+        if (closestPlayerTrans == null)
+            return;
+
+        Vector3 directionToPlayer = (closestPlayerTrans.position - transform.position).normalized;
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2f * Time.deltaTime);
+        if(attackStrength < 0.3)
+        {
+            transform.Translate(directionToPlayer * 3f * Time.deltaTime, Space.World);
+        }
+        else
+        {
+            transform.Translate(directionToPlayer * attackStrength * 10f * Time.deltaTime, Space.World);
+        }
+
+    }
+
     public void DetectAspect()
     {
-        if (playerTrans == null) return;
+        float closestDistance = float.MaxValue;
+        closestPlayerTrans = null;
 
-        rayDirection = (playerTrans.position - transform.position).normalized;
-
-        if (Vector3.Angle(rayDirection, transform.forward) < FieldOfView)
+        foreach (GameObject player in goPlayers)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, rayDirection, out hit, ViewDistance))
+            Transform playerTrans = player.transform;
+            Vector3 rayDirection = (playerTrans.position - transform.position).normalized;
+
+            if (Vector3.Angle(rayDirection, transform.forward) < FieldOfView)
             {
-                if (hit.collider.gameObject.CompareTag("Player"))
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, rayDirection, out hit, ViewDistance))
                 {
-                    Debug.Log("Chasing Mode: ON");
-                    isVisible = true;
-                    fsm.ChangeState("Attack");
-                }
-            }
-            else
-            {
-                Debug.Log("Chasing Mode: OFF");
-                isVisible = false;
-                if (energyLevel != 0)
-                {
-                    if (energyLevel > 0.3f)
+                    if (hit.collider.gameObject.CompareTag("Player"))
                     {
-                        fsm.ChangeState("Patrol");
-                    }
-                    else if (energyLevel <= 0.3f)
-                    {
-                        fsm.ChangeState("Idle");
+                        float distance = Vector3.Distance(transform.position, playerTrans.position);
+                        if (distance < closestDistance)
+                        {
+                            closestDistance = distance;
+                            closestPlayerTrans = playerTrans; // Update closest player
+                        }
                     }
                 }
             }
         }
+
+        if (closestPlayerTrans != null)
+        {
+            Debug.Log("Chasing Mode: ON - Closest Player Detected");
+            isVisible = true;
+            fsm.ChangeState("Attack");
+        }
+        else
+        {
+            Debug.Log("Chasing Mode: OFF - No Player Detected");
+            isVisible = false;
+
+            if (energyLevel > 0.3f)
+            {
+                fsm.ChangeState("Patrol");
+            }
+            else
+            {
+                fsm.ChangeState("Idle");
+            }
+        }
     }
+
     private void OnDrawGizmos()
     {
-        if (!Application.isEditor || playerTrans == null)
+        if (!Application.isEditor || goPlayers == null)
             return;
 
-        Debug.DrawLine(transform.position, playerTrans.position, Color.red);
+        foreach (GameObject player in goPlayers)
+        {
+            Vector3 playerPos = player.transform.position;
+            Debug.DrawLine(transform.position, playerPos, Color.red);
+        }
         Vector3 frontRayPoint = transform.position + (transform.forward * ViewDistance);
 
         Vector3 leftRayPoint = Quaternion.Euler(0, FieldOfView * 0.5f, 0) * frontRayPoint;
@@ -167,7 +229,7 @@ public class NPCController : MonoBehaviour
             }
             else
             {
-                player.health -= 100 * attackStrength;
+                player.health -= 10 * attackStrength;
             }
             
         }
