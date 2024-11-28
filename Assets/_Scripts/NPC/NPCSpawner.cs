@@ -16,7 +16,7 @@ public class NPCSpawner : MonoBehaviour
     {
         for (int i = 0; i < totalNPC; i++)
         {
-            Vector3 randomPosition = new Vector3(Random.Range(startXPoint, endXPoint), 0f, Random.Range(startZPoint, endZPoint));
+            Vector3 randomPosition = new Vector3(Random.Range(startXPoint, endXPoint), 2.88f, Random.Range(startZPoint, endZPoint));
             Instantiate(NPCPrefab, randomPosition, Quaternion.identity);
         }
     }

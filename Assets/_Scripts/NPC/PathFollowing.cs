@@ -13,6 +13,7 @@ public class PathFollowing : MonoBehaviour
     public float obstacleAvoidanceDistance = 5.0f;  // Distance to detect obstacles
     public float obstacleAvoidanceStrength = 5.0f;  // Strength of obstacle avoidance
 
+
     private float curSpeed;
     private int curPathIndex = 0;
     private int pathLength;
