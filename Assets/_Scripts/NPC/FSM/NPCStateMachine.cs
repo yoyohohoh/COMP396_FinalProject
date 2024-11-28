@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.XR.Haptics;
 public class NPCStateMachine : MonoBehaviour
 {
     public NPCController _controller;
-    NPCStateBase _currentState;
+    public NPCStateBase _currentState;
     NPCStateFactory _stateFactory;
 
     [SerializeField] string currentState;
@@ -32,6 +32,9 @@ public class NPCStateMachine : MonoBehaviour
     {
         _currentState?.Execute();
         if(_currentState != null)
-        { currentState = _currentState.ToString(); }
+        { 
+            currentState = _currentState.ToString();
+            Debug.Log($"NPC: {_currentState.ToString()}");
+        }
     }
 }
