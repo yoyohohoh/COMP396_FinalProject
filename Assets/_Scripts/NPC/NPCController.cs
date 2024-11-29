@@ -30,7 +30,7 @@ public class NPCController : MonoBehaviour
 
     #region Sight properties
     public int FieldOfView = 45;
-    public int ViewDistance = 10;
+    public int ViewDistance = 20;
     private Transform playerTrans;
     private Vector3 rayDirection;
     #endregion

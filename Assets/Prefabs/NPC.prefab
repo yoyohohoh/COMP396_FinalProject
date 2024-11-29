@@ -118,7 +118,7 @@ MonoBehaviour:
   isVisible: 0
   detectionRate: 1
   FieldOfView: 45
-  ViewDistance: 10
+  ViewDistance: 20
   isPatrol: 0
 --- !u!114 &5759270235981966351
 MonoBehaviour:
