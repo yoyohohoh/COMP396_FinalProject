@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] Vector3 finishPosition;
+    [SerializeField] Vector3 finishRotation;
     [SerializeField] bool isPlayer1;
     [SerializeField] bool isSpeedUp = false;
     [SerializeField] public bool isProtected = false;
@@ -73,11 +75,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check if health is zero or below
-        if (health <= 0)
-        {
-            _inputs.Disable();
-            ResetPlayerPosition();
-        }
+
 
         // Limit health to a maximum of 100
         if (health > 100)
@@ -149,18 +147,11 @@ public class PlayerController : MonoBehaviour
         _controller.Move(finalMovement);
     }
 
-    void ResetPlayerPosition()
+    public void ResetPlayerPosition()
     {
-        if (isPlayer1)
-        {
-            transform.position = new Vector3(-2f, 0, endPoint.transform.position.z);
-        }
-        else
-        {
-            transform.position = new Vector3(2f, 0, endPoint.transform.position.z);
-        }
-        currentSpeed = 0;
-        health = 100f;
+        transform.position = finishPosition;
+        transform.rotation = Quaternion.Euler(finishRotation);
+        this.enabled = false;
     }
 
     void OnEnable() => _inputs.Enable();

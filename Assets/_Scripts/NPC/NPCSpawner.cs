@@ -6,11 +6,13 @@ public class NPCSpawner : MonoBehaviour
 {
     [SerializeField] int totalNPC = 10;
     [SerializeField] GameObject NPCPrefab;
-    [SerializeField] float startXPoint = -5.0f;
-    [SerializeField] float endXPoint = 5.0f;
-    [SerializeField] float startZPoint = 20.0f;
-    [SerializeField] float endZPoint = 160.0f;
+
     [SerializeField] float spawnYPoint = 2.0f;
+
+    [SerializeField] Vector3 centerPoint;
+
+    [SerializeField] float innerRadius;
+    [SerializeField] float outerRadius;
 
 
     // Start is called before the first frame update
@@ -18,9 +20,25 @@ public class NPCSpawner : MonoBehaviour
     {
         for (int i = 0; i < totalNPC; i++)
         {
-            Vector3 randomPosition = new Vector3(Random.Range(startXPoint, endXPoint), spawnYPoint, Random.Range(startZPoint, endZPoint));
-            Instantiate(NPCPrefab, randomPosition, Quaternion.identity);
+            SpawnNPC(NPCPrefab);
         }
+    }
+
+    void SpawnNPC(GameObject prefab)
+    {
+        float angle = Random.Range(0f, 360f);
+        float radians = angle * Mathf.Deg2Rad;
+
+        float radius = Random.Range(innerRadius, outerRadius);
+
+        float x = centerPoint.x + radius * Mathf.Cos(radians);
+        float z = centerPoint.z + radius * Mathf.Sin(radians);
+
+        float y = spawnYPoint;
+
+        Vector3 randomPosition = new Vector3(x, y, z);
+
+        Instantiate(prefab, randomPosition, Quaternion.identity);
     }
 
 }

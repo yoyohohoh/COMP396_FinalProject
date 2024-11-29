@@ -61,6 +61,6 @@ public class PowerUp : MonoBehaviour
         transform.position = targetPosition;
         transform.localScale = Vector3.zero;
 
-        Destroy(gameObject); // Destroy the object after the animation
+        Destroy(this.gameObject); // Destroy the object after the animation
     }
 }

@@ -1124,8 +1124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalNPC: 10
   NPCPrefab: {fileID: 2779875750095946837, guid: 68f84be72624bbf43801aff1327b304b, type: 3}
-  startZPoint: 20
-  endZPoint: 160
+  spawnYPoint: 2
+  centerPoint: {x: 0, y: 0, z: 0}
+  innerRadius: 0
+  outerRadius: 0
 --- !u!1 &463024750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,8 +1414,10 @@ MonoBehaviour:
   totalReward: 15
   powerUpPrefab: {fileID: 1003147350274728200, guid: d51884cb52b04d240939486bdd1a976e, type: 3}
   rewardPrefab: {fileID: 8807449962541368789, guid: 5779979707157fa48936bfe710c9bd17, type: 3}
-  startZPoint: 20
-  endZPoint: 160
+  spawnYPoint: 1
+  centerPoint: {x: 0, y: 0, z: 0}
+  innerRadius: 0
+  outerRadius: 0
 --- !u!4 &942079437
 Transform:
   m_ObjectHideFlags: 0
@@ -2204,6 +2208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   players: []
+  countPlayer: 0
+  dataKeeper: {fileID: 0}
 --- !u!65 &1377374259
 BoxCollider:
   m_ObjectHideFlags: 0

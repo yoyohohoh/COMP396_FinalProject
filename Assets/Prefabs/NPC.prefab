@@ -115,9 +115,10 @@ MonoBehaviour:
   isAlert: 0
   isAttack: 0
   goPlayers: []
+  attackSpeed: 4
   isVisible: 0
   detectionRate: 1
-  FieldOfView: 45
+  FieldOfView: 360
   ViewDistance: 20
   isPatrol: 0
 --- !u!114 &5759270235981966351
@@ -214,7 +215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4530003306004526970, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.87
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4530003306004526970, guid: a281aaaef0214dbbb7a0c5e5d4d370d1, type: 3}
       propertyPath: m_LocalPosition.z
