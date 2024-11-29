@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Text powerUpItemTxt;
     [SerializeField] public Text lifeTxt;
     [SerializeField] public Text timerTxt;
-    [SerializeField] public GameObject endPoint;
 
     private float originalSpeed;
     private float currentSpeed = 0f;

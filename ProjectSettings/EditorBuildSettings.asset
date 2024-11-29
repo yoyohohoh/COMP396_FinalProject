@@ -18,6 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/EasyLevel.unity
     guid: 2fb1026fc6d96af4f827d2781311c514
   - enabled: 1
+    path: Assets/Scenes/Levels/MediumLevel.unity
+    guid: 62e9826044ff30a4f90f00737313b152
+  - enabled: 1
+    path: Assets/Scenes/Levels/HardLevel.unity
+    guid: 227ff9021588f25479f8ccd71815cd22
+  - enabled: 1
     path: Assets/Scenes/UI/GameOver.unity
     guid: 622eadca3dcf3fa4eb90e873961aa0b6
   m_configObjects:
