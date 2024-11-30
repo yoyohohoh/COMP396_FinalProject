@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] Vector3 startPosition;
+    [SerializeField] Vector3 startRotation;
+
     [SerializeField] Vector3 finishPosition;
     [SerializeField] Vector3 finishRotation;
     [SerializeField] bool isPlayer1;
@@ -57,6 +60,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         originalSpeed = moveSpeed;
+        transform.position = startPosition;
+        transform.rotation = Quaternion.Euler(startRotation);
     }
 
     void Update()
@@ -73,10 +78,6 @@ public class PlayerController : MonoBehaviour
             verticalVelocity.y += gravity * Time.deltaTime; // Apply gravity if in the air
         }
 
-        // Check if health is zero or below
-
-
-        // Limit health to a maximum of 100
         if (health > 100)
         {
             health = 100;
