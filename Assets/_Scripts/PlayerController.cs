@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
                 powerUpItemTxt.text = "Null";
                 isSpeedUp = true;
                 moveSpeed *= 3f;
-                Invoke("NormalSpeed", 3f);
+                Invoke("NormalSpeed", 5f);
                 break;
 
             default:

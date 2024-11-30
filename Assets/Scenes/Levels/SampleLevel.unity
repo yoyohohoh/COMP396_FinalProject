@@ -1094,7 +1094,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &460337313
 Transform:
   m_ObjectHideFlags: 0
@@ -1397,7 +1397,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &942079436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1816,6 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deddab74fcb82544e8b84e1eb5994be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTime: 0
 --- !u!114 &1294220923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2162,6 +2163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deddab74fcb82544e8b84e1eb5994be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isTime: 0
 --- !u!1 &1377374256
 GameObject:
   m_ObjectHideFlags: 0
@@ -2210,6 +2212,7 @@ MonoBehaviour:
   players: []
   countPlayer: 0
   dataKeeper: {fileID: 0}
+  hasCollided: 0
 --- !u!65 &1377374259
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2246,6 +2249,10 @@ PrefabInstance:
     - target: {fileID: 793575205080573917, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: m_Name
       value: Player2
+      objectReference: {fileID: 0}
+    - target: {fileID: 793575205080573917, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6101967646542871076, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: lifeTxt
@@ -2550,7 +2557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 879272363306280538, guid: d51884cb52b04d240939486bdd1a976e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 879272363306280538, guid: d51884cb52b04d240939486bdd1a976e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3241,7 +3248,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7005912166875084322, guid: 5779979707157fa48936bfe710c9bd17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.172
       objectReference: {fileID: 0}
     - target: {fileID: 7005912166875084322, guid: 5779979707157fa48936bfe710c9bd17, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3299,6 +3306,10 @@ PrefabInstance:
     - target: {fileID: 793575205080573917, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: m_Name
       value: Player1
+      objectReference: {fileID: 0}
+    - target: {fileID: 793575205080573917, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 793575205080573917, guid: dffdf5a34053bf14e9243c0e866d4044, type: 3}
       propertyPath: m_TagString
