@@ -9,7 +9,7 @@ public class NPCSpawner : MonoBehaviour
 
     [SerializeField] float spawnYPoint = 2.0f;
 
-    [SerializeField] Vector3 centerPoint;
+Vector3 centerPoint;
 
     [SerializeField] float innerRadius;
     [SerializeField] float outerRadius;
@@ -18,6 +18,7 @@ public class NPCSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        centerPoint = this.transform.position;
         Invoke("ActivateSpawner", 3.0f);
     }
 

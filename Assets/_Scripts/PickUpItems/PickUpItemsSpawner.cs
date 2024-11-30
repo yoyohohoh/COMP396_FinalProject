@@ -11,7 +11,7 @@ public class PickUpItemsSpawner : MonoBehaviour
     [SerializeField] GameObject rewardPrefab;
     [SerializeField] float spawnYPoint = 1.0f;
 
-    [SerializeField] Vector3 centerPoint;
+Vector3 centerPoint;
 
     [SerializeField] float innerRadius;
     [SerializeField] float outerRadius;
@@ -20,7 +20,8 @@ public class PickUpItemsSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       for(int i = 0; i < totalPowerUp; i++)
+        centerPoint = this.transform.position;
+       for (int i = 0; i < totalPowerUp; i++)
         {
             SpawnPowerUp(powerUpPrefab);
 
