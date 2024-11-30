@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
         }
         _inputs = new InputSystem_Actions();
 
+        Invoke("InputSetup", 3.0f);
+    }
+
+    void InputSetup()
+    {
         if (isPlayer1)
         {
             _inputs.Player.Player1Move.performed += context => _move = context.ReadValue<Vector2>();
@@ -62,6 +67,7 @@ public class PlayerController : MonoBehaviour
         originalSpeed = moveSpeed;
         transform.position = startPosition;
         transform.rotation = Quaternion.Euler(startRotation);
+
     }
 
     void Update()
