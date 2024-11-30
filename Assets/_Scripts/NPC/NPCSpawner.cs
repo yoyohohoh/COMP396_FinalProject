@@ -18,6 +18,11 @@ public class NPCSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Invoke("ActivateSpawner", 3.0f);
+    }
+
+    void ActivateSpawner()
+    {
         for (int i = 0; i < totalNPC; i++)
         {
             SpawnNPC(NPCPrefab);
