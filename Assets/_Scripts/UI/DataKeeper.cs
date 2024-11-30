@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -24,10 +25,17 @@ public class DataKeeper : MonoBehaviour
     [Header("Level Options")]
     Dropdown dropdownLevelList;
     [SerializeField] string selectedLevel = "Easy";
-    [SerializeField] public List<bool> levelAvailability = new List<bool> { true, false, false};
+    [SerializeField] public List<bool> levelAvailability = new List<bool> { true, false, false };
     [SerializeField] public List<string> easyLevelRecord;
     [SerializeField] public List<string> mediumLevelRecord;
     [SerializeField] public List<string> hardLevelRecord;
+    bool isMediumAvailable = false;
+    bool isHardAvailable = false;
+
+    private void Update()
+    {
+        levelAvailability = new List<bool> { true, isMediumAvailable, isHardAvailable };
+    }
     void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
 
     void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -35,7 +43,7 @@ public class DataKeeper : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         GameObject controllerObject = GameObject.Find("MainMenuController");
-        if(controllerObject != null)
+        if (controllerObject != null)
         {
             mainMenuController = controllerObject.GetComponent<MainMenuController>();
             if (mainMenuController != null)
@@ -62,6 +70,21 @@ public class DataKeeper : MonoBehaviour
                 dropdownLevelList.onValueChanged.AddListener(OnDropdownValueChanged);
             }
         }
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        switch (currentSceneIndex)
+        {
+            case 3:
+                easyLevelRecord = new List<string>();
+                break;
+            case 4:
+                mediumLevelRecord = new List<string>();
+                isMediumAvailable = true;
+                break;
+            case 5:
+                hardLevelRecord = new List<string>();
+                isHardAvailable = true;
+                break;
+        }
 
     }
 
@@ -70,5 +93,5 @@ public class DataKeeper : MonoBehaviour
         selectedLevel = dropdownLevelList.options[index].text;
         mainMenuController.gameLevel = selectedLevel;
     }
-    
+
 }

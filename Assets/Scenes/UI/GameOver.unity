@@ -385,7 +385,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lv3: 00:00'
+  m_Text: 00:00
 --- !u!222 &543901081
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -919,7 +919,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lv3: 00:00'
+  m_Text: 00:00
 --- !u!1 &1201205932
 GameObject:
   m_ObjectHideFlags: 0
@@ -998,7 +998,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lv2: 00:00'
+  m_Text: 00:00
 --- !u!1 &1289327002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1069,7 +1069,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lv1: 00:00'
+  m_Text: 00:00
 --- !u!222 &1289327005
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1417,7 +1417,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lv1: 00:00'
+  m_Text: 00:00
 --- !u!222 &1750476893
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1473,7 +1473,7 @@ MonoBehaviour:
   p1EasyTimer: {fileID: 1289327004}
   p2EasyTimer: {fileID: 1750476892}
   p1MediumTimer: {fileID: 1201205935}
-  p2MediumTimer: {fileID: 1195418971}
+  p2MediumTimer: {fileID: 2134533387}
   p1HardTimer: {fileID: 543901080}
   p2HardTimer: {fileID: 1195418971}
 --- !u!1 &1884197570
@@ -1640,7 +1640,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Lv2: 00:00'
+  m_Text: 00:00
 --- !u!222 &2134533388
 CanvasRenderer:
   m_ObjectHideFlags: 0
