@@ -1207,6 +1207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameLevel: 
+  startButton: {fileID: 0}
 --- !u!4 &976207926
 Transform:
   m_ObjectHideFlags: 0
@@ -2446,7 +2447,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 976207925}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
         m_MethodName: MainMenuScene
         m_Mode: 1

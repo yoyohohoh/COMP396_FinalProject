@@ -31,7 +31,7 @@ public class DataKeeper : MonoBehaviour
     [SerializeField] public List<string> hardLevelRecord;
     bool isMediumAvailable = false;
     bool isHardAvailable = false;
-
+    public bool isFirstLoad = true;
     private void Update()
     {
         levelAvailability = new List<bool> { true, isMediumAvailable, isHardAvailable };
