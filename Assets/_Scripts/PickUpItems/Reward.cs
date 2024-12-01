@@ -16,7 +16,7 @@ public class Reward : MonoBehaviour
         else if (other.CompareTag("Player"))
         {
             // Increment the player's health
-            other.gameObject.GetComponent<PlayerController>().health += 10f;
+            other.gameObject.GetComponent<PlayerController>().health += 10;
             Debug.Log("Player health increased by 10.");
             TriggerBlipAnimation();
         }

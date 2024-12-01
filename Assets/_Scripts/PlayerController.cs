@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isPlayer1;
     [SerializeField] bool isSpeedUp = false;
     [SerializeField] public bool isProtected = false;
-    [SerializeField] public float health = 100f;
+    [SerializeField] public int health = 100;
     //[SerializeField] public float moveSpeed = 15.0f;
     [SerializeField] public Image powerUpItem;
     [SerializeField] public Text powerUpItemTxt;
@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         lifeTxt.text = $"Life: {health}";
 
         // Check if player is grounded

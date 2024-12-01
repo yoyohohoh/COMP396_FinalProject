@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -230,7 +231,8 @@ public class NPCController : MonoBehaviour
             }
             else
             {
-                player.health -= 5 * attackStrength;
+                int attack = Convert.ToInt32(10* attackStrength);
+                player.health -= attack;
             }
             
         }
