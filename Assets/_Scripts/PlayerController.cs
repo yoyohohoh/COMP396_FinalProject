@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool isSpeedUp = false;
     [SerializeField] public bool isProtected = false;
     [SerializeField] public float health = 100f;
-    [SerializeField] public float moveSpeed = 15.0f;
+    //[SerializeField] public float moveSpeed = 15.0f;
+    [SerializeField] public Image powerUpItem;
     [SerializeField] public Text powerUpItemTxt;
     [SerializeField] public Text lifeTxt;
     [SerializeField] public Text timerTxt;
@@ -27,12 +28,13 @@ public class PlayerController : MonoBehaviour
     private Vector3 verticalVelocity; // Vertical velocity for grounding and gravity
 
     [SerializeField] private float acceleration = 20f;
-    [SerializeField] private float maxSpeed = 50f;
+    [SerializeField] public float maxSpeed = 50f;
     [SerializeField] private float turnSpeed = 100f;
     [SerializeField] private float brakeForce = 50f;
     [SerializeField] private float gravity = -9.8f; // Gravity force
     [SerializeField] private float groundCheckOffset = 0.1f; // Offset to ensure grounding
-
+    Color notInUseColor;
+    Sprite background;
     void Awake()
     {
         if (_controller == null)
@@ -64,10 +66,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        originalSpeed = moveSpeed;
+        originalSpeed = maxSpeed;
         transform.position = startPosition;
         transform.rotation = Quaternion.Euler(startRotation);
-
+        notInUseColor = powerUpItem.color;
+        background = powerUpItem.sprite;
     }
 
     void Update()
@@ -167,18 +170,20 @@ public class PlayerController : MonoBehaviour
     {
         switch (powerUpItemTxt.text)
         {
-            case "Protect":
+            case "Protected":
                 Debug.Log("Used Protect");
-                powerUpItemTxt.text = "Null";
+                powerUpItem.color = Color.white;
+                //powerUpItemTxt.text = "Proctect in use";
                 isProtected = true;
                 Invoke("ResetProtect", 5f);
                 break;
 
             case "Speed":
                 Debug.Log("Used Speed");
-                powerUpItemTxt.text = "Null";
+                powerUpItem.color = Color.white;
+                //powerUpItemTxt.text = "Speed in use";
                 isSpeedUp = true;
-                moveSpeed *= 3f;
+                maxSpeed *= 50f;
                 Invoke("NormalSpeed", 5f);
                 break;
 
@@ -190,12 +195,18 @@ public class PlayerController : MonoBehaviour
 
     void NormalSpeed()
     {
-        moveSpeed = originalSpeed;
+        powerUpItem.color = notInUseColor;
+        //powerUpItemTxt.text = "Null";
+        powerUpItem.sprite = background;
+        maxSpeed = originalSpeed;
         isSpeedUp = false;
     }
 
     void ResetProtect()
     {
+        powerUpItem.color = notInUseColor;
+        //powerUpItemTxt.text = "Null";
+        powerUpItem.sprite = background;
         isProtected = false;
     }
 }

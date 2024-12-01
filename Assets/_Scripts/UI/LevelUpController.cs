@@ -50,7 +50,7 @@ public class LevelUpController : MonoBehaviour
             countPlayer--;
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
             playerController.ResetPlayerPosition();
-            playerController.moveSpeed = 0f;
+            playerController.maxSpeed = 0f;
             Scene currentScene = SceneManager.GetActiveScene();
             if (currentScene.name == "EasyLevel")
             {

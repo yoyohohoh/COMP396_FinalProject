@@ -230,7 +230,7 @@ public class NPCController : MonoBehaviour
             }
             else
             {
-                player.health -= 10 * attackStrength;
+                player.health -= 5 * attackStrength;
             }
             
         }
