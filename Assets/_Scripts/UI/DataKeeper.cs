@@ -25,8 +25,8 @@ public class DataKeeper : MonoBehaviour
     [Header("Level Options")]
     Dropdown dropdownLevelList;
     public bool isFirstLoad = true;
-    [SerializeField] public string player1Name;
-    [SerializeField] public string player2Name;
+    [SerializeField] public string player1Name = "Player 1";
+    [SerializeField] public string player2Name = "Player 2";
     [SerializeField] string selectedLevel = "Easy";
     [SerializeField] public List<bool> levelAvailability = new List<bool> { true, false, false };
     [SerializeField] public List<string> easyLevelRecord;
@@ -36,7 +36,8 @@ public class DataKeeper : MonoBehaviour
     bool isHardAvailable = false;
     private void Start()
     {
-
+        player1Name = "Player 1";
+        player2Name = "Player 2";
     }
     private void Update()
     {
