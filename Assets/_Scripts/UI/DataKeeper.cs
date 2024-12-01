@@ -24,6 +24,7 @@ public class DataKeeper : MonoBehaviour
     MainMenuController mainMenuController;
     [Header("Level Options")]
     Dropdown dropdownLevelList;
+    public bool isFirstLoad = true;
     [SerializeField] string selectedLevel = "Easy";
     [SerializeField] public List<bool> levelAvailability = new List<bool> { true, false, false };
     [SerializeField] public List<string> easyLevelRecord;
@@ -31,10 +32,10 @@ public class DataKeeper : MonoBehaviour
     [SerializeField] public List<string> hardLevelRecord;
     bool isMediumAvailable = false;
     bool isHardAvailable = false;
-    public bool isFirstLoad = true;
     private void Update()
     {
         levelAvailability = new List<bool> { true, isMediumAvailable, isHardAvailable };
+
     }
     void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
 
