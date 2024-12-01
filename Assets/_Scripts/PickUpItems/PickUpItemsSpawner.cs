@@ -9,24 +9,45 @@ public class PickUpItemsSpawner : MonoBehaviour
     [SerializeField] int totalReward = 5;
     [SerializeField] GameObject powerUpPrefab;
     [SerializeField] GameObject rewardPrefab;
-    [SerializeField] float startZPoint = 20.0f;
-    [SerializeField] float endZPoint = 160.0f;
-    float startXPoint = -5.0f;
-    float endXPoint = 5.0f;
+    [SerializeField] float spawnYPoint = 1.0f;
+
+Vector3 centerPoint;
+
+    [SerializeField] float innerRadius;
+    [SerializeField] float outerRadius;
+
 
     // Start is called before the first frame update
     void Start()
     {
-       for(int i = 0; i < totalPowerUp; i++)
+        centerPoint = this.transform.position;
+       for (int i = 0; i < totalPowerUp; i++)
         {
-            Vector3 randomPosition = new Vector3(Random.Range(startXPoint, endXPoint), 0f, Random.Range(startZPoint, endZPoint));
-            Instantiate(powerUpPrefab, randomPosition, Quaternion.identity);
+            SpawnPowerUp(powerUpPrefab);
+
         }
         for (int i = 0; i < totalReward; i++)
         {
-            Vector3 randomPosition = new Vector3(Random.Range(startXPoint, endXPoint), 0f, Random.Range(startZPoint, endZPoint));
-            Instantiate(rewardPrefab, randomPosition, Quaternion.identity);
+            SpawnPowerUp(rewardPrefab);
         }
     }
+
+    void SpawnPowerUp(GameObject prefab)
+    {
+        float angle = Random.Range(0f, 360f);
+        float radians = angle * Mathf.Deg2Rad;
+
+        float radius = Random.Range(innerRadius, outerRadius);
+
+        float x = centerPoint.x + radius * Mathf.Cos(radians);
+        float z = centerPoint.z + radius * Mathf.Sin(radians);
+
+        float y = spawnYPoint;
+
+        Vector3 randomPosition = new Vector3(x, y, z);
+
+        Instantiate(prefab, randomPosition, Quaternion.identity);
+    }
+
 
 }

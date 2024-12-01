@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,20 +20,20 @@ public class NPCEnergy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitiateEnergyLevel();
         fsm = this.gameObject.GetComponent<NPCStateMachine>();
-        if (energyLevel != 0)
-        {
-            if (energyLevel > 0.3f)
-            {
-                fsm.ChangeState("Patrol");
-            }
-            else if (energyLevel <= 0.3f)
-            {
-                fsm.ChangeState("Idle");
-            }
-        }
+        InitiateEnergyLevel();      
+    }
 
+    void EvaluateEnergy(float energyLevel)
+    {
+        if (energyLevel > 0.3f)
+        {
+            fsm.ChangeState("Patrol");
+        }
+        else if (energyLevel <= 0.3f)
+        {
+            fsm.ChangeState("Idle");
+        }
     }
 
     void InitiateEnergyLevel()
@@ -67,11 +68,10 @@ public class NPCEnergy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Energy Level
-        //patrolStrength = patrolCurve.Evaluate(1);
-        //attackStrength = attackCurve.Evaluate(1);
-        //idleStrength = idleCurve.Evaluate(1);
-        //energyLevel = FuzzyLogic(patrolStrength, attackStrength, idleStrength);
+        if(fsm._currentState == null)
+        {
+            EvaluateEnergy(energyLevel);
+        }        
     }
     float FuzzyLogic(float patrolStrength, float attackStrength, float idleStrength)
     {

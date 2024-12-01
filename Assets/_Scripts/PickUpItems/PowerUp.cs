@@ -5,6 +5,9 @@ public class PowerUp : MonoBehaviour
 {
     public float destroyDelay = 0.2f; // Duration of the animation
     public float upwardDistance = 1.0f; // Distance the object moves upwards
+    [SerializeField] Sprite speedUp;
+    [SerializeField] Sprite protection;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,14 +19,16 @@ public class PowerUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             int randomProbability = Random.Range(0, 100);
-            if (randomProbability < 30)
+            if (randomProbability < 10)
             {
                 Debug.Log("PowerUp: Protect");
-                other.gameObject.GetComponent<PlayerController>().powerUpItemTxt.text = "Protect";
+                other.gameObject.GetComponent<PlayerController>().powerUpItem.sprite = protection;
+                other.gameObject.GetComponent<PlayerController>().powerUpItemTxt.text = "Protected";
             }
             else
             {
                 Debug.Log("PowerUp: Speed");
+                other.gameObject.GetComponent<PlayerController>().powerUpItem.sprite = speedUp;
                 other.gameObject.GetComponent<PlayerController>().powerUpItemTxt.text = "Speed";
             }
 
@@ -61,6 +66,6 @@ public class PowerUp : MonoBehaviour
         transform.position = targetPosition;
         transform.localScale = Vector3.zero;
 
-        Destroy(gameObject); // Destroy the object after the animation
+        Destroy(this.gameObject); // Destroy the object after the animation
     }
 }

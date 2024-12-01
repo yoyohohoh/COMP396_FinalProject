@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 public class LevelUpController : MonoBehaviour
 {
     [SerializeField] GameObject[] players;
-    int countPlayer;
-    DataKeeper dataKeeper;
+    [SerializeField] int countPlayer;
+    [SerializeField] DataKeeper dataKeeper;
+    [SerializeField] bool hasCollided = false;
 
     void Start()
     {
@@ -30,19 +31,39 @@ public class LevelUpController : MonoBehaviour
             // add player winning animation
             Invoke("NextLevel", 2f);
         }
+        foreach (GameObject player in players)
+        {
+            if (player.GetComponent<PlayerController>().health <= 0)
+            {
+                player.GetComponent<PlayerController>().lifeTxt.text = "Dead";
+                player.GetComponent<PlayerController>().ResetPlayerPosition();
+            }
+        }
     }
+
     private void OnTriggerEnter(Collider other)
     {
+        if (hasCollided) return;
         if (other.CompareTag("Player"))
         {
+            hasCollided = true;
             countPlayer--;
             PlayerController playerController = other.gameObject.GetComponent<PlayerController>();
-            playerController.moveSpeed = 0f;
+            playerController.ResetPlayerPosition();
+            playerController.maxSpeed = 0f;
             Scene currentScene = SceneManager.GetActiveScene();
             if (currentScene.name == "EasyLevel")
             {
                 dataKeeper.easyLevelRecord.Add(other.gameObject.name);
-                dataKeeper.easyLevelRecord.Add(playerController.timerTxt.text);
+                if(playerController.health > 0)
+                {
+                    dataKeeper.easyLevelRecord.Add(playerController.timerTxt.text);
+                }
+                else
+                {
+                    dataKeeper.easyLevelRecord.Add("Dead");
+                }
+
             }
             if (currentScene.name == "MediumLevel")
             {
@@ -55,12 +76,23 @@ public class LevelUpController : MonoBehaviour
                 dataKeeper.hardLevelRecord.Add(playerController.timerTxt.text);
             }
             playerController.timerTxt.GetComponent<TimeDisplay>().enabled = false;
+            playerController.ResetPlayerPosition();
+            StartCoroutine(ResetCollisionFlag());
         }
     }
-
+    IEnumerator ResetCollisionFlag()
+    {
+        yield return new WaitForSeconds(1.0f); // Adjust the delay as needed
+        hasCollided = false;
+    }
     private void NextLevel()
     {
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentSceneIndex + 1);
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class NPCController : MonoBehaviour
     //public GameObject goPlayer;
     public GameObject[] goPlayers;  // Array to store multiple players
     private Transform closestPlayerTrans; // Store the closest player's transform
-
+    [SerializeField] float attackSpeed = 4.0f;
     public bool isVisible = false;
     public float detectionRate = 1.0f;
     private float elapsedTime = 0.0f;
@@ -30,7 +31,7 @@ public class NPCController : MonoBehaviour
 
     #region Sight properties
     public int FieldOfView = 45;
-    public int ViewDistance = 10;
+    public int ViewDistance = 20;
     private Transform playerTrans;
     private Vector3 rayDirection;
     #endregion
@@ -137,13 +138,14 @@ public class NPCController : MonoBehaviour
         Vector3 directionToPlayer = (closestPlayerTrans.position - transform.position).normalized;
         Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 2f * Time.deltaTime);
-        if(attackStrength < 0.3)
+        if(attackStrength < 0.4)
         {
-            transform.Translate(directionToPlayer * 3f * Time.deltaTime, Space.World);
+            transform.Translate(directionToPlayer * attackSpeed * Time.deltaTime, Space.World);
         }
         else
         {
-            transform.Translate(directionToPlayer * attackStrength * 10f * Time.deltaTime, Space.World);
+            attackSpeed = attackStrength * 10f;
+            transform.Translate(directionToPlayer * attackSpeed * Time.deltaTime, Space.World);
         }
 
     }
@@ -229,7 +231,8 @@ public class NPCController : MonoBehaviour
             }
             else
             {
-                player.health -= 10 * attackStrength;
+                int attack = Convert.ToInt32(10* attackStrength);
+                player.health -= attack;
             }
             
         }

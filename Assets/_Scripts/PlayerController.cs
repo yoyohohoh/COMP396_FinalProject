@@ -3,15 +3,21 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] Vector3 startPosition;
+    [SerializeField] Vector3 startRotation;
+
+    [SerializeField] Vector3 finishPosition;
+    [SerializeField] Vector3 finishRotation;
     [SerializeField] bool isPlayer1;
     [SerializeField] bool isSpeedUp = false;
     [SerializeField] public bool isProtected = false;
-    [SerializeField] public float health = 100f;
-    [SerializeField] public float moveSpeed = 15.0f;
+    [SerializeField] public int health = 100;
+    //[SerializeField] public float moveSpeed = 15.0f;
+    [SerializeField] public Image powerUpItem;
     [SerializeField] public Text powerUpItemTxt;
     [SerializeField] public Text lifeTxt;
     [SerializeField] public Text timerTxt;
-    [SerializeField] public GameObject endPoint;
+    [SerializeField] public Text nameTxt;
 
     private float originalSpeed;
     private float currentSpeed = 0f;
@@ -23,12 +29,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 verticalVelocity; // Vertical velocity for grounding and gravity
 
     [SerializeField] private float acceleration = 20f;
-    [SerializeField] private float maxSpeed = 50f;
+    [SerializeField] public float maxSpeed = 50f;
     [SerializeField] private float turnSpeed = 100f;
     [SerializeField] private float brakeForce = 50f;
     [SerializeField] private float gravity = -9.8f; // Gravity force
     [SerializeField] private float groundCheckOffset = 0.1f; // Offset to ensure grounding
-
+    Color notInUseColor;
+    Sprite background;
+    [SerializeField] GameObject carSound;
     void Awake()
     {
         if (_controller == null)
@@ -37,17 +45,41 @@ public class PlayerController : MonoBehaviour
         }
         _inputs = new InputSystem_Actions();
 
+        Invoke("InputSetup", 3.0f);
+    }
+
+    void InputSetup()
+    {
         if (isPlayer1)
         {
-            _inputs.Player.Player1Move.performed += context => _move = context.ReadValue<Vector2>();
-            _inputs.Player.Player1Move.canceled += context => _move = Vector2.zero;
+            carSound = GameObject.Find("Audio Source").transform.Find("Bgm").transform.Find("CarSound1").gameObject;
+
+            _inputs.Player.Player1Move.performed += context =>
+            {
+                _move = context.ReadValue<Vector2>();
+                carSound.SetActive(true);
+            };
+            _inputs.Player.Player1Move.canceled += context =>
+            {
+                _move = Vector2.zero;
+                carSound.SetActive(false);
+            };
 
             _inputs.Player.Player1PowerUp.performed += context => UsePowerUp();
         }
         else
         {
-            _inputs.Player.Player2Move.performed += context => _move = context.ReadValue<Vector2>();
-            _inputs.Player.Player2Move.canceled += context => _move = Vector2.zero;
+            carSound = GameObject.Find("Audio Source").transform.Find("Bgm").transform.Find("CarSound2").gameObject;
+            _inputs.Player.Player2Move.performed += context =>
+            {
+                _move = context.ReadValue<Vector2>();
+                carSound.SetActive(true);
+            };
+            _inputs.Player.Player2Move.canceled += context =>
+            {
+                _move = Vector2.zero;
+                carSound.SetActive(false);
+            };
 
             _inputs.Player.Player2PowerUp.performed += context => UsePowerUp();
         }
@@ -55,11 +87,25 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        originalSpeed = moveSpeed;
+        originalSpeed = maxSpeed;
+        transform.position = startPosition;
+        transform.rotation = Quaternion.Euler(startRotation);
+        notInUseColor = powerUpItem.color;
+        background = powerUpItem.sprite;
+        if(isPlayer1)
+        {
+            nameTxt.text = GameObject.Find("DataKeeper").GetComponent<DataKeeper>().player1Name;
+        }
+        else
+        {
+            nameTxt.text = GameObject.Find("DataKeeper").GetComponent<DataKeeper>().player2Name;
+        }
+        
     }
 
     void Update()
     {
+
         lifeTxt.text = $"Life: {health}";
 
         // Check if player is grounded
@@ -72,14 +118,6 @@ public class PlayerController : MonoBehaviour
             verticalVelocity.y += gravity * Time.deltaTime; // Apply gravity if in the air
         }
 
-        // Check if health is zero or below
-        if (health <= 0)
-        {
-            _inputs.Disable();
-            ResetPlayerPosition();
-        }
-
-        // Limit health to a maximum of 100
         if (health > 100)
         {
             health = 100;
@@ -149,18 +187,11 @@ public class PlayerController : MonoBehaviour
         _controller.Move(finalMovement);
     }
 
-    void ResetPlayerPosition()
+    public void ResetPlayerPosition()
     {
-        if (isPlayer1)
-        {
-            transform.position = new Vector3(-2f, 0, endPoint.transform.position.z);
-        }
-        else
-        {
-            transform.position = new Vector3(2f, 0, endPoint.transform.position.z);
-        }
-        currentSpeed = 0;
-        health = 100f;
+        transform.position = finishPosition;
+        transform.rotation = Quaternion.Euler(finishRotation);
+        this.enabled = false;
     }
 
     void OnEnable() => _inputs.Enable();
@@ -170,19 +201,21 @@ public class PlayerController : MonoBehaviour
     {
         switch (powerUpItemTxt.text)
         {
-            case "Protect":
+            case "Protected":
                 Debug.Log("Used Protect");
-                powerUpItemTxt.text = "Null";
+                powerUpItem.color = Color.white;
+                //powerUpItemTxt.text = "Proctect in use";
                 isProtected = true;
                 Invoke("ResetProtect", 5f);
                 break;
 
             case "Speed":
                 Debug.Log("Used Speed");
-                powerUpItemTxt.text = "Null";
+                powerUpItem.color = Color.white;
+                //powerUpItemTxt.text = "Speed in use";
                 isSpeedUp = true;
-                moveSpeed *= 3f;
-                Invoke("NormalSpeed", 3f);
+                maxSpeed *= 50f;
+                Invoke("NormalSpeed", 5f);
                 break;
 
             default:
@@ -193,12 +226,18 @@ public class PlayerController : MonoBehaviour
 
     void NormalSpeed()
     {
-        moveSpeed = originalSpeed;
+        powerUpItem.color = notInUseColor;
+        //powerUpItemTxt.text = "Null";
+        powerUpItem.sprite = background;
+        maxSpeed = originalSpeed;
         isSpeedUp = false;
     }
 
     void ResetProtect()
     {
+        powerUpItem.color = notInUseColor;
+        //powerUpItemTxt.text = "Null";
+        powerUpItem.sprite = background;
         isProtected = false;
     }
 }
