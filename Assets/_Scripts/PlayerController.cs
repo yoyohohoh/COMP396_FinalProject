@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Text powerUpItemTxt;
     [SerializeField] public Text lifeTxt;
     [SerializeField] public Text timerTxt;
+    [SerializeField] public Text nameTxt;
 
     private float originalSpeed;
     private float currentSpeed = 0f;
@@ -91,7 +92,15 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(startRotation);
         notInUseColor = powerUpItem.color;
         background = powerUpItem.sprite;
-
+        if(isPlayer1)
+        {
+            nameTxt.text = GameObject.Find("DataKeeper").GetComponent<DataKeeper>().player1Name;
+        }
+        else
+        {
+            nameTxt.text = GameObject.Find("DataKeeper").GetComponent<DataKeeper>().player2Name;
+        }
+        
     }
 
     void Update()

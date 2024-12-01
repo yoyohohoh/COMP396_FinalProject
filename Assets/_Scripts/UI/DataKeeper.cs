@@ -25,6 +25,8 @@ public class DataKeeper : MonoBehaviour
     [Header("Level Options")]
     Dropdown dropdownLevelList;
     public bool isFirstLoad = true;
+    [SerializeField] public string player1Name;
+    [SerializeField] public string player2Name;
     [SerializeField] string selectedLevel = "Easy";
     [SerializeField] public List<bool> levelAvailability = new List<bool> { true, false, false };
     [SerializeField] public List<string> easyLevelRecord;
@@ -32,10 +34,18 @@ public class DataKeeper : MonoBehaviour
     [SerializeField] public List<string> hardLevelRecord;
     bool isMediumAvailable = false;
     bool isHardAvailable = false;
+    private void Start()
+    {
+
+    }
     private void Update()
     {
         levelAvailability = new List<bool> { true, isMediumAvailable, isHardAvailable };
-
+        if(SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            player1Name = GameObject.Find("Canvas").transform.Find("Control").transform.Find("Player1").transform.Find("Name").gameObject.GetComponent<InputField>().text;
+            player2Name = GameObject.Find("Canvas").transform.Find("Control").transform.Find("Player2").transform.Find("Name").gameObject.GetComponent<InputField>().text;
+        }
     }
     void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
 

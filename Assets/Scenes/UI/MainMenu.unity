@@ -1640,6 +1640,14 @@ PrefabInstance:
       value: DataKeeper
       objectReference: {fileID: 0}
     - target: {fileID: 1485268590876098372, guid: eec8f204eab035c40a3eee966444a64e, type: 3}
+      propertyPath: player1Name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485268590876098372, guid: eec8f204eab035c40a3eee966444a64e, type: 3}
+      propertyPath: player2Name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1485268590876098372, guid: eec8f204eab035c40a3eee966444a64e, type: 3}
       propertyPath: levelAvailability.Array.data[1]
       value: 1
       objectReference: {fileID: 0}

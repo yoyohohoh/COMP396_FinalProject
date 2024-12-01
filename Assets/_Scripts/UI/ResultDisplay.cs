@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ResultDisplay : MonoBehaviour
 {
+    [SerializeField] Text p1Name;
+    [SerializeField] Text p2Name;
     [SerializeField] Text p1EasyTimer;
     [SerializeField] Text p2EasyTimer;
     [SerializeField] Text p1MediumTimer;
@@ -20,7 +23,8 @@ public class ResultDisplay : MonoBehaviour
     void Start()
     {
         dataKeeper = GameObject.Find("DataKeeper").GetComponent<DataKeeper>();
-
+        p1Name.text = dataKeeper.player1Name;
+        p2Name.text = dataKeeper.player2Name;
         easyLevelRecord = dataKeeper.easyLevelRecord;
         mediumLevelRecord = dataKeeper.mediumLevelRecord;
         hardLevelRecord = dataKeeper.hardLevelRecord;
