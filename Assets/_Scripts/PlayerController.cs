@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckOffset = 0.1f; // Offset to ensure grounding
     Color notInUseColor;
     Sprite background;
+    [SerializeField] GameObject carSound;
     void Awake()
     {
         if (_controller == null)
@@ -50,15 +51,35 @@ public class PlayerController : MonoBehaviour
     {
         if (isPlayer1)
         {
-            _inputs.Player.Player1Move.performed += context => _move = context.ReadValue<Vector2>();
-            _inputs.Player.Player1Move.canceled += context => _move = Vector2.zero;
+            carSound = GameObject.Find("Audio Source").transform.Find("CarSound1").gameObject;
+
+            _inputs.Player.Player1Move.performed += context =>
+            {
+                _move = context.ReadValue<Vector2>();
+
+                carSound.SetActive(true);
+            };
+            _inputs.Player.Player1Move.canceled += context =>
+            {
+                _move = Vector2.zero;
+                carSound.SetActive(false);
+            };
 
             _inputs.Player.Player1PowerUp.performed += context => UsePowerUp();
         }
         else
         {
-            _inputs.Player.Player2Move.performed += context => _move = context.ReadValue<Vector2>();
-            _inputs.Player.Player2Move.canceled += context => _move = Vector2.zero;
+            carSound = GameObject.Find("Audio Source").transform.Find("CarSound2").gameObject;
+            _inputs.Player.Player2Move.performed += context =>
+            {
+                _move = context.ReadValue<Vector2>();
+                carSound.SetActive(true);
+            };
+            _inputs.Player.Player2Move.canceled += context =>
+            {
+                _move = Vector2.zero;
+                carSound.SetActive(false);
+            };
 
             _inputs.Player.Player2PowerUp.performed += context => UsePowerUp();
         }
@@ -71,6 +92,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(startRotation);
         notInUseColor = powerUpItem.color;
         background = powerUpItem.sprite;
+
     }
 
     void Update()
