@@ -51,12 +51,11 @@ public class PlayerController : MonoBehaviour
     {
         if (isPlayer1)
         {
-            carSound = GameObject.Find("Audio Source").transform.Find("CarSound1").gameObject;
+            carSound = GameObject.Find("Audio Source").transform.Find("Bgm").transform.Find("CarSound1").gameObject;
 
             _inputs.Player.Player1Move.performed += context =>
             {
                 _move = context.ReadValue<Vector2>();
-
                 carSound.SetActive(true);
             };
             _inputs.Player.Player1Move.canceled += context =>
@@ -69,7 +68,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            carSound = GameObject.Find("Audio Source").transform.Find("CarSound2").gameObject;
+            carSound = GameObject.Find("Audio Source").transform.Find("Bgm").transform.Find("CarSound2").gameObject;
             _inputs.Player.Player2Move.performed += context =>
             {
                 _move = context.ReadValue<Vector2>();
