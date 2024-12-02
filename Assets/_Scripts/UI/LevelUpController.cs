@@ -68,12 +68,26 @@ public class LevelUpController : MonoBehaviour
             if (currentScene.name == "MediumLevel")
             {
                 dataKeeper.mediumLevelRecord.Add(other.gameObject.name);
-                dataKeeper.mediumLevelRecord.Add(playerController.timerTxt.text);
+                if (playerController.health > 0)
+                {
+                    dataKeeper.mediumLevelRecord.Add(playerController.timerTxt.text);
+                }
+                else
+                {
+                    dataKeeper.mediumLevelRecord.Add("Dead");
+                }
             }
             if (currentScene.name == "HardLevel")
             {
                 dataKeeper.hardLevelRecord.Add(other.gameObject.name);
-                dataKeeper.hardLevelRecord.Add(playerController.timerTxt.text);
+                if (playerController.health > 0)
+                {
+                    dataKeeper.hardLevelRecord.Add(playerController.timerTxt.text);
+                }
+                else
+                {
+                    dataKeeper.hardLevelRecord.Add("Dead");
+                }
             }
             playerController.timerTxt.GetComponent<TimeDisplay>().enabled = false;
             playerController.ResetPlayerPosition();
