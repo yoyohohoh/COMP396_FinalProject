@@ -19,7 +19,7 @@ public class PowerUp : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             int randomProbability = Random.Range(0, 100);
-            if (randomProbability < 10)
+            if (randomProbability < 40)
             {
                 Debug.Log("PowerUp: Protect");
                 other.gameObject.GetComponent<PlayerController>().powerUpItem.sprite = protection;
