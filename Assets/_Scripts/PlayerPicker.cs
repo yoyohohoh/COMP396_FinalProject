@@ -13,6 +13,7 @@ public class PlayerPicker : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+
         if (isPicking)
         {
             isPicking = false;
@@ -21,7 +22,8 @@ public class PlayerPicker : MonoBehaviour
             selectedPoint = allWaypoints[randomIndex].gameObject.transform;
             Vector3 rebornPoint = new Vector3(selectedPoint.position.x, 10f, selectedPoint.position.z);
             Debug.Log($"Reborn at {rebornPoint}");
-            other.gameObject.GetComponent<PlayerController>().PlayerPicker(rebornPoint);
+            if (other.CompareTag("Player"))
+            { other.gameObject.GetComponent<PlayerController>().PlayerPicker(rebornPoint); }
             Debug.Log($"reach");
             Invoke("DelayPicker", 0.1f);
         }
