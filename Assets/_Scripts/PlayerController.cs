@@ -194,6 +194,18 @@ public class PlayerController : MonoBehaviour
         this.enabled = false;
     }
 
+    public void PlayerPicker(Vector3 randomPoint)
+    {
+        transform.position = randomPoint;
+        this.enabled = false;
+
+        Invoke("EnableThis", 0.5f);
+    }
+    void EnableThis()
+    {
+        this.enabled = true;
+    }
+
     void OnEnable() => _inputs.Enable();
     void OnDisable() => _inputs.Disable();
 
