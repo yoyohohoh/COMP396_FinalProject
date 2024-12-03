@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
                 powerUpItem.color = Color.white;
                 //powerUpItemTxt.text = "Speed in use";
                 isSpeedUp = true;
-                maxSpeed *= 50f;
+                maxSpeed += 10f;
                 Invoke("NormalSpeed", 5f);
                 break;
 
